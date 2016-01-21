@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-yum -y install wget curl gpg tar gzip which git gcc-c++ make
+yum -y install wget curl gpg tar gzip which git gcc-c++ make sudo
 
 # work in /opt
 cd /opt
@@ -23,6 +23,13 @@ rm apache-maven-${MAVEN_VER}-bin.tar.gz apache-maven-${MAVEN_VER}-bin.tar.gz.asc
 curl --silent --location https://rpm.nodesource.com/setup_5.x | bash -
 yum -y install nodejs
 
-
 # clean up
 yum clean all
+
+# set up a user
+useradd build --groups wheel
+cat > /etc/sudoers.d/wheel <<-EOF
+%wheel        ALL=(ALL)       NOPASSWD: ALL
+EOF
+
+
