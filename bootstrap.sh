@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
-yum -y install wget curl gpg tar gzip which git gcc-c++ make sudo
+
+# update to uek4
+cd /etc/yum.repos.d && wget -O public-yum-ol7.repo http://public-yum.oracle.com/public-yum-ol7.repo
+
+cat >/etc/yum.repos.d/docker.repo <<-EOF
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/oraclelinux/7
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+EOF
+
+# install docker
+yum -y --enablerepo ol7_UEKR4  install docker-engine wget curl gpg tar gzip which git gcc-c++ make sudo
 
 # work in /opt
 cd /opt
