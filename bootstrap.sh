@@ -34,7 +34,7 @@ ln -sf /opt/apache-maven-${MAVEN_VER}/bin/mvn /usr/local/bin
 rm apache-maven-${MAVEN_VER}-bin.tar.gz apache-maven-${MAVEN_VER}-bin.tar.gz.asc KEYS
 
 # get node
-curl --silent --location https://rpm.nodesource.com/setup_5.x | bash -
+curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
 yum -y install nodejs
 
 # clean up

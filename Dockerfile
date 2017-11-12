@@ -1,4 +1,4 @@
-FROM 7thsense/java:8u92
+FROM 7thsense/java:latest
 MAINTAINER Erik LaBianca <erik@7thsense.io>
 ADD bootstrap.sh /root/bootstrap.sh
 RUN /bin/bash /root/bootstrap.sh
