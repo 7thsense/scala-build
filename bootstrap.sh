@@ -25,6 +25,15 @@ tar -xvzf apache-maven-${MAVEN_VER}-bin.tar.gz
 ln -sf /opt/apache-maven-${MAVEN_VER}/bin/mvn /usr/local/bin
 rm apache-maven-${MAVEN_VER}-bin.tar.gz apache-maven-${MAVEN_VER}-bin.tar.gz.asc KEYS
 
+# download and install gosu
+arch=amd64
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
+curl -o /usr/local/bin/gosu -fSL "https://github.com/tianon/gosu/releases/download/1.3/gosu-$arch"
+curl -o /usr/local/bin/gosu.asc -fSL "https://github.com/tianon/gosu/releases/download/1.3/gosu-$arch.asc"
+gpg --verify /usr/local/bin/gosu.asc
+rm /usr/local/bin/gosu.asc
+chmod +x /usr/local/bin/gosu
+
 # clean up
 yum clean all
 rm -rf /var/cache/yum
