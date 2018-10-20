@@ -12,6 +12,7 @@ RUN /usr/local/bin/coursier fetch \
     org.apache.hadoop:hadoop-aws:2.7.5 \
     org.typelevel:cats-core_2.11:1.4.0 \
     org.typelevel:cats-core_2.12:1.4.0
+WORKDIR /home/build
 USER root
 ENTRYPOINT ["gosu", "build"]
 CMD /bin/bash 
