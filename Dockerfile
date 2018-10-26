@@ -3,16 +3,6 @@ MAINTAINER Erik LaBianca <erik@7thsense.io>
 ADD bootstrap.sh /root/bootstrap.sh
 RUN /bin/bash /root/bootstrap.sh
 WORKDIR /home/build
-USER build
-ADD .sbt-bootstrap /home/build/.sbt-bootstrap
-WORKDIR /home/build/.sbt-bootstrap
-RUN /bin/bash /home/build/.sbt-bootstrap/initialize.sh
-RUN /usr/local/bin/coursier fetch \
-    org.apache.spark:spark-sql_2.11:2.3.2 \
-    org.apache.hadoop:hadoop-aws:2.7.5 \
-    org.typelevel:cats-core_2.11:1.4.0 \
-    org.typelevel:cats-core_2.12:1.4.0
-WORKDIR /home/build
 USER root
 ENTRYPOINT ["gosu", "build"]
 CMD /bin/bash 

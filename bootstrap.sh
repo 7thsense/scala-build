@@ -1,18 +1,27 @@
 #!/usr/bin/env bash
 
+# Add sbt repo
+curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
+
+# Add node repo
 curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 
 # install stuff we can get straight from yum
-yum -y install docker wget curl gpg tar gzip which git gcc-c++ make sudo java-1.8.0-openjdk-devel nodejs nodejs-devel aws-cli
+yum -y install wget curl gpg tar gzip which git gcc-c++ make sudo \
+    java-1.8.0-openjdk-devel nodejs nodejs-devel aws-cli \
+    yum-utils device-mapper-persistent-data lvm2 sbt
+
+# Install docker repo
+yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+yum -y install docker-ce
 
 # work in /opt
 cd /opt
 
-# get sbt-extras
-curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > /usr/local/bin/sbt
-chmod 0755 /usr/local/bin/sbt
-
-# get coursier 
+# get coursier
 curl -L -o /usr/local/bin/coursier https://git.io/vgvpD && chmod +x /usr/local/bin/coursier
 
 # get maven
