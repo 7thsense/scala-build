@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 curl -sL https://rpm.nodesource.com/setup_10.x | bash -
+
 # install stuff we can get straight from yum
-yum -y install docker wget curl gpg tar gzip which git gcc-c++ make sudo java-1.8.0-openjdk-devel nodejs nodejs-devel
+yum -y install docker wget curl gpg tar gzip which git gcc-c++ make sudo java-1.8.0-openjdk-devel nodejs nodejs-devel aws-cli
 
 # work in /opt
 cd /opt
